@@ -2,6 +2,8 @@ import { createContext, useReducer } from "react";
 
 export const ThemeContext = createContext();
 
+const initialState = { theme: "light" };
+
 const themeReducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_THEME":
@@ -12,7 +14,7 @@ const themeReducer = (state, action) => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(themeReducer, { theme: "light" });
+  const [state, dispatch] = useReducer(themeReducer, initialState);
 
   return (
     <ThemeContext.Provider value={{ theme: state.theme, dispatch }}>
