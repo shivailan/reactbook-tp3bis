@@ -1,5 +1,6 @@
 import InputLogger from "./components/InputLogger";
 import LoginForm from "./components/LoginForm";
+import MessageBoard from "./components/MessageBoard";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <h1>ReactBook - Partie 3</h1>
       <InputLogger />
       <LoginForm />
+      <MessageBoard />
     </div>
   );
 }
