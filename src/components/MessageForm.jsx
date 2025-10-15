@@ -5,9 +5,9 @@ const MessageForm = ({ onAddMessage }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (message.trim() === "") return;
-    onAddMessage(message); // Appelle le callback du parent
-    setMessage(""); // Réinitialise le champ
+    if (!message.trim()) return;
+    onAddMessage(message);
+    setMessage("");
   };
 
   console.log("render <MessageForm>");
@@ -17,7 +17,7 @@ const MessageForm = ({ onAddMessage }) => {
       <input
         type="text"
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={e => setMessage(e.target.value)}
         placeholder="Tape ton message..."
       />
       <button type="submit">Publier</button>

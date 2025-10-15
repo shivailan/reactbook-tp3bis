@@ -4,8 +4,8 @@ import MessageForm from "./MessageForm";
 const MessageBoard = () => {
   const [messages, setMessages] = useState([]);
 
-  const addMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+  const addMessage = (msg) => {
+    setMessages(prev => [...prev, msg]);
   };
 
   console.log("render <MessageBoard>");
@@ -15,9 +15,7 @@ const MessageBoard = () => {
       <h2>Message Board</h2>
       <MessageForm onAddMessage={addMessage} />
       <ul>
-        {messages.map((msg, index) => (
-          <li key={index}>{msg}</li>
-        ))}
+        {messages.map((msg, i) => <li key={i}>{msg}</li>)}
       </ul>
     </div>
   );
