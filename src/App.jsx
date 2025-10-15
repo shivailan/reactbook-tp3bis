@@ -1,18 +1,31 @@
+import { useContext } from "react";
 import Feed from "./components/Feed";
-import InputLogger from "./components/InputLogger";
-import LoginForm from "./components/LoginForm";
-import MessageBoard from "./components/MessageBoard";
+import Header from "./components/Header";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeContext, ThemeProvider } from "./context/ThemeContext";
 
-function App() {
+const AppContent = () => {
+  const { theme, dispatch } = useContext(ThemeContext);
+
   return (
-    <div>
-      <h1>ReactBook - Partie 4</h1>
-      <InputLogger />
-      <LoginForm />
-      <MessageBoard />
+    <div className={theme === "light" ? "light-theme" : "dark-theme"}>
+      <Header />
+      <button onClick={() => dispatch({ type: "TOGGLE_THEME" })}>
+        Changer de thème
+      </button>
       <Feed />
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <AuthProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </AuthProvider>
+  );
+};
 
 export default App;
