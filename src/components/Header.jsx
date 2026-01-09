@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Header = () => {
   const { user, login, logout } = useContext(AuthContext);
+  const { theme, dispatch } = useContext(ThemeContext);
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [error, setError] = useState(false);
 
@@ -16,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <header className={`sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm`}>
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
         
         {/* Logo */}
@@ -64,6 +66,14 @@ const Header = () => {
               </button>
             </form>
           )}
+          
+          {/* Toggle thème */}
+          <button
+            className="ml-4 px-2 py-1 border rounded-md text-sm bg-gray-100 dark:bg-gray-800"
+            onClick={() => dispatch({ type: "TOGGLE_THEME" })}
+          >
+            {theme === "light" ? "🌙 Mode Sombre" : "☀️ Mode Clair"}
+          </button>
         </div>
       </div>
     </header>
