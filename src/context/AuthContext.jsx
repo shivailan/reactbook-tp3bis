@@ -5,8 +5,8 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Login strict pour l’utilisateur Shiva
   const login = (username, password) => {
+    // Vérification stricte des identifiants
     if (username === "shiva" && password === "shiva") {
       setUser({ name: "Shiva", isAdmin: true });
       return true; // Succès

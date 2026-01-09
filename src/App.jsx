@@ -1,17 +1,14 @@
 import { useContext } from "react";
-import { Route, Routes } from "react-router-dom";
+import Feed from "./components/Feed";
 import Header from "./components/Header";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeContext, ThemeProvider } from "./context/ThemeContext";
-import FeedPage from "./pages/FeedPage";
-import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
 
 const AppContent = () => {
   const { theme, dispatch } = useContext(ThemeContext);
 
   return (
+    // On change la couleur du fond et du texte selon le thème avec Tailwind
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "light" ? "bg-gray-100 text-gray-900" : "bg-gray-900 text-white"
     }`}>
@@ -26,27 +23,7 @@ const AppContent = () => {
         </button>
       </div>
 
-      <main className="main-content">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <FeedPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/user/:username"
-            element={
-              <ProtectedRoute>
-                <ProfilePage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </main>
+      <Feed />
     </div>
   );
 };
