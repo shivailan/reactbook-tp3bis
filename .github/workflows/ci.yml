@@ -17,15 +17,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20 # Version 20 minimum pour la compatibilité Vite/Jest
-          cache: 'npm'
+          node-version: 20
+          # On commente le cache temporairement pour forcer un nettoyage propre sur GitHub
+          # cache: 'npm' 
 
       - name: Install dependencies
-        # On utilise install car ci échoue souvent si le lockfile a été généré sur une autre plateforme
-        run: npm install 
+        # On supprime le package-lock s'il existe pour forcer npm à recalculer les dépendances pour Linux
+        run: |
+          rm -f package-lock.json
+          npm install
 
       - name: Run Tests
-        # Lance tes deux procédures de tests Jest
         run: npm test
 
       - name: Build Application
