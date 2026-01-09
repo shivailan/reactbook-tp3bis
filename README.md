@@ -48,6 +48,20 @@ Lancement du serveur local : npm run dev
 
 Accès à l'application via l'adresse locale fournie dans le terminal (généralement localhost:5173).
 
+Avec Docker (Conteneurisation)
+
+L'application est entièrement dockerisée pour garantir un environnement stable.
+
+Construction de l'image :
+
+Bash
+docker build -t reactbook-frontend:1.0 .
+Lancement du conteneur :
+
+Bash
+docker run --rm -p 5173:5173 reactbook-frontend:1.0
+Accès : L'application est disponible sur http://localhost:5173
+
 Utilisation
 
 Navigation : Faire défiler pour lire les posts existants.
